@@ -1,0 +1,66 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install SDK packages
+        run: sdkmanager "platforms;android-34" "build-tools;34.0.0"
+
+      - name: Build APK
+        run: |
+          export ANDROID_SDK_ROOT="$ANDROID_HOME"
+          export BUILD_TOOLS_DIR="$ANDROID_HOME/build-tools/34.0.0"
+          export ANDROID_JAR="$ANDROID_HOME/platforms/android-34/android.jar"
+          export AAPT2="$BUILD_TOOLS_DIR/aapt2"
+          export ZIPALIGN="$BUILD_TOOLS_DIR/zipalign"
+          export AAPT_BIN="$BUILD_TOOLS_DIR/aapt"
+          chmod +x android/build.sh
+          ./android/build.sh
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: text-dedup-apk
+          path: android/text-dedup.apk
+          if-no-files-found: error
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download APK
+        uses: actions/download-artifact@v4
+        with:
+          name: text-dedup-apk
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: text-dedup.apk
+          generate_release_notes: true

@@ -1,0 +1,15 @@
+# Build output
+android/build/
+android/assets/
+android/signing.keystore
+android/*.apk
+android/*.idsig
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+
+# Python
+__pycache__/
+*.pyc

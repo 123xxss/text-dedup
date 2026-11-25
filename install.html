@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#4f46e5">
+<title>安装 · 文字去重</title>
+<style>
+  :root { color-scheme: light dark; --bg:#f2f5fb; --card:#fff; --text:#0f172a; --muted:#64748b; --line:#e2e8f0; --primary:#4f46e5; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#070b15; --card:#0f172a; --text:#e5eaf3; --muted:#94a3b8; --line:#223049; --primary:#818cf8; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; padding: 28px 18px 40px;
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(700px 420px at 10% -10%, rgba(99,102,241,.25), transparent 60%),
+                radial-gradient(600px 400px at 100% 0%, rgba(217,70,239,.16), transparent 55%), var(--bg);
+    color: var(--text); font-family: system-ui, -apple-system, "PingFang SC", "Noto Sans SC", sans-serif;
+  }
+  .card {
+    width: 100%; max-width: 420px; padding: 26px 22px; border: 1px solid var(--line);
+    border-radius: 24px; background: var(--card); text-align: center;
+    box-shadow: 0 30px 70px -40px rgba(15,23,42,.55);
+  }
+  .icon {
+    width: 78px; height: 78px; margin: 0 auto 16px; display: grid; place-items: center;
+    border-radius: 22px; color: #fff;
+    background: linear-gradient(140deg,#6366f1,#8b5cf6 55%,#d946ef);
+    box-shadow: 0 16px 34px -14px rgba(99,102,241,.9);
+  }
+  .icon svg { width: 42px; height: 42px; }
+  h1 { margin: 0 0 6px; font-size: 24px; letter-spacing: -.03em; }
+  .sub { margin: 0 0 22px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; height: 50px; border-radius: 14px; color: #fff; text-decoration: none;
+    background: linear-gradient(135deg,#4f46e5,#7c3aed); font-weight: 700; font-size: 15px;
+    box-shadow: 0 14px 28px -14px rgba(79,70,229,.9);
+  }
+  .size { margin: 9px 0 22px; color: var(--muted); font-size: 11.5px; }
+  .steps {
+    margin: 0; padding: 16px 16px 16px 34px; border: 1px solid var(--line); border-radius: 16px;
+    background: color-mix(in srgb, var(--card) 88%, var(--primary)); text-align: left;
+    color: var(--muted); font-size: 12.5px; line-height: 1.75;
+  }
+  .steps b { color: var(--text); font-weight: 650; }
+  .note { margin: 16px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+    padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px;
+    color: var(--muted); font-size: 11.5px; font-weight: 650;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; }
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M4 6h16M4 12h10M4 18h7"/>
+      <path d="M15 15.5l2 2 4-4" stroke-width="2.2"/>
+    </svg>
+  </div>
+  <div class="badge"><i class="dot"></i>独立应用 · 无需 DSH</div>
+  <h1>文字去重</h1>
+  <p class="sub">自己的图标，离线可用。<br>按行 / 段落 / 分隔符去重，复制或导出 TXT。</p>
+  <a class="btn" href="dist/text-dedup-1.0.1.apk" download="文字去重.apk">下载安装包</a>
+  <p class="size">Android 10+ · 约 29 KB · 不申请网络权限</p>
+  <ol class="steps">
+    <li>点上面的按钮，下载 <b>文字去重.apk</b></li>
+    <li>打开下载完成通知，或到「文件 → 下载」里点它</li>
+    <li>按提示允许「安装未知应用」，然后点<b>安装</b></li>
+  </ol>
+  <p class="note">如果浏览器提示「无法安装」，请确认已允许当前浏览器安装未知应用；安装包只在本机生成，不上传。</p>
+</main>
+</body>
+</html>
